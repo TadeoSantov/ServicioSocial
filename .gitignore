@@ -1,0 +1,50 @@
+<<<<<<< HEAD
+.env
+=======
+# Variables de entorno
+.env
+.env.local
+
+# Archivos temporales
+*.tmp
+*.temp
+audio_extract_*
+>>>>>>> e6a370e8bebb4c2adf633c209095084438283d14
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+<<<<<<< HEAD
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+uploads/
+*.mp3
+*.wav
+*.m4a
+.streamlit/
+=======
+
+# Archivos de Streamlit
+.streamlit/
+
+# Archivos de video/audio subidos (opcional, descomentar si no quieres versionarlos)
+# *.mp4
+# *.mov
+# *.mp3
+# *.wav
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+>>>>>>> e6a370e8bebb4c2adf633c209095084438283d14
