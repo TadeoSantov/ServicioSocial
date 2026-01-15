@@ -1,0 +1,50 @@
+============================================
+  EVALUADOR UNIVERSAL DE EXAMENES ORALES
+  Version 2.0
+============================================
+
+DESCRIPCION:
+Aplicación para evaluar exámenes orales usando IA.
+Transcribe audio con Whisper y evalúa con Llama o Gemini.
+
+REQUISITOS:
+- Python 3.10 o superior
+- Conexión a internet
+- API Key de Groq (obligatoria)
+- API Key de Google AI (opcional)
+
+INSTALACION:
+1. Ejecuta "instalar.bat" (doble clic)
+2. Espera a que se instalen las dependencias
+3. Crea el archivo .env (copia .env.example)
+4. Agrega tus API Keys en el archivo .env
+
+CONFIGURAR API KEYS:
+1. Copia el archivo ".env.example" y renómbralo a ".env"
+2. Abre .env con el bloc de notas
+3. Reemplaza "your_groq_api_key_here" con tu API Key de Groq
+   - Obtén tu key en: https://console.groq.com/keys
+4. (Opcional) Agrega tu Google API Key para usar Gemini
+   - Obtén tu key en: https://aistudio.google.com/apikey
+
+EJECUCION:
+1. Ejecuta "ejecutar.bat" (doble clic)
+2. Se abrirá la aplicación en tu navegador
+3. Para cerrar, cierra la ventana de comandos
+
+USO:
+1. Pega el material de referencia (tema del examen)
+2. Define la rúbrica de evaluación
+3. Sube el audio del examen oral
+4. Haz clic en "Evaluar Examen"
+5. Revisa los resultados detallados
+
+SOPORTE:
+- Formatos de audio: MP3, WAV, M4A, OGG, FLAC, WEBM
+- Idiomas: Español, Inglés, Francés, Alemán, Portugués, Italiano
+- Modelos: Groq (Llama 3.3) o Google AI (Gemini 1.5)
+
+CREDITOS:
+Desarrollado con Streamlit + Groq Cloud + Google AI
+
+============================================
