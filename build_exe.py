@@ -1,6 +1,4 @@
-"""
-Script para crear el ejecutable del Evaluador de Exámenes Orales
-"""
+"""Script para crear el ejecutable del Evaluador de Examenes Orales."""
 import PyInstaller.__main__
 import os
 import shutil
@@ -8,7 +6,7 @@ import shutil
 app_dir = os.path.dirname(os.path.abspath(__file__))
 dist_dir = os.path.join(app_dir, "dist", "EvaluadorExamenesOrales")
 
-print("🔨 Construyendo ejecutable...")
+print("Construyendo ejecutable...")
 
 PyInstaller.__main__.run([
     'launcher.py',
@@ -27,5 +25,5 @@ PyInstaller.__main__.run([
     '--noconfirm',
 ])
 
-print(f"\n✅ Ejecutable creado en: {dist_dir}")
-print("\n📦 Para distribuir, copia toda la carpeta 'EvaluadorExamenesOrales'")
+print(f"\nEjecutable creado en: {dist_dir}")
+print("\nPara distribuir, copia toda la carpeta 'EvaluadorExamenesOrales'")

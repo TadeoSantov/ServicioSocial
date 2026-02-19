@@ -1,7 +1,4 @@
-"""
-Launcher para Evaluador de Exámenes Orales
-Ejecuta la aplicación Streamlit en una ventana del navegador
-"""
+"""Launcher para Evaluador de Examenes Orales."""
 import subprocess
 import sys
 import os
@@ -10,7 +7,6 @@ import webbrowser
 import socket
 
 def find_free_port():
-    """Encuentra un puerto libre"""
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind(('', 0))
         return s.getsockname()[1]
@@ -34,11 +30,11 @@ def main():
     url = f"http://localhost:{port}"
     
     print("=" * 50)
-    print("🎓 Evaluador Universal de Exámenes Orales")
+    print("  Evaluador de Examenes Orales")
     print("=" * 50)
-    print(f"\n📍 Iniciando servidor en: {url}")
-    print("⏳ Espera unos segundos mientras carga...")
-    print("\n💡 Para cerrar, cierra esta ventana o presiona Ctrl+C")
+    print(f"\n  Iniciando servidor en: {url}")
+    print("  Espera unos segundos mientras carga...")
+    print("\n  Para cerrar, cierra esta ventana o presiona Ctrl+C")
     print("=" * 50)
     
     # Abrir navegador después de un delay
@@ -61,9 +57,9 @@ def main():
             "--theme.primaryColor", "#667eea"
         ], cwd=app_dir)
     except KeyboardInterrupt:
-        print("\n👋 Cerrando aplicación...")
+        print("\nCerrando aplicacion...")
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\nError: {e}")
         input("Presiona Enter para salir...")
 
 if __name__ == "__main__":

@@ -7,6 +7,8 @@ Aplicación web desarrollada con **Streamlit** y **Groq Cloud** que permite eval
 - **Universal**: Funciona para cualquier materia académica mediante RAG (Retrieval-Augmented Generation)
 - **Transcripción automática**: Usa Whisper (distil-whisper-large-v3-en) para convertir audio a texto
 - **Evaluación inteligente**: Llama 3.1 70B analiza y califica según tu material de referencia
+- **Grabación integrada**: Graba audio directamente desde el navegador o sube archivos MP3/WAV
+- **Detector de lectura (EXPERIMENTAL)**: Detecta si el estudiante está leyendo en lugar de hablar naturalmente
 - **Limpieza de transcripción**: Elimina muletillas ("eh", "mmm", "este") automáticamente
 - **Feedback estructurado**: Calificación, análisis de conceptos, errores específicos y sugerencias
 - **Interfaz intuitiva**: Diseño moderno y fácil de usar con Streamlit
@@ -64,8 +66,52 @@ La aplicación se abrirá automáticamente en tu navegador en `http://localhost:
 
 1. **Material de Referencia**: Pega el contenido que el alumno debe dominar (apuntes, libro, PDF)
 2. **Rúbrica de Evaluación**: Define los criterios de calificación
-3. **Audio del Examen**: Sube el archivo de audio (.mp3, .wav, .m4a)
+3. **Audio del Examen**: 
+   - **Opción A - Subir Audio**: Sube un archivo (.mp3, .wav, .m4a, etc.)
+   - **Opción B - Grabar**: Graba directamente desde tu micrófono en el navegador
 4. **Evaluar**: Haz clic en "Evaluar Examen" y espera los resultados
+
+### 🎙️ Grabación de Audio
+
+La app incluye un grabador integrado que te permite:
+- Grabar directamente desde tu navegador (Chrome, Edge, Firefox)
+- No necesitas software adicional
+- El audio se procesa en formato WAV de alta calidad
+- Puedes escuchar la grabación antes de evaluar
+
+**Pasos para grabar:**
+1. Ve a la pestaña "🎙️ Grabar Audio"
+2. Haz clic en el botón del micrófono
+3. Permite el acceso al micrófono cuando el navegador lo solicite
+4. Habla claramente tu respuesta
+5. Haz clic nuevamente para detener la grabación
+6. Escucha la grabación para verificar
+7. Haz clic en "🚀 Evaluar Examen"
+
+### 🔍 Detector de Lectura (EXPERIMENTAL)
+
+Nueva funcionalidad que detecta si el estudiante está **leyendo** en lugar de hablar naturalmente:
+
+**¿Qué detecta?**
+- Fluidez excesiva sin pausas naturales
+- Vocabulario muy formal sin explicaciones propias
+- Ausencia de muletillas ("eh", "mmm")
+- Estructura gramatical perfecta
+- Ritmo monótono y constante
+- Enumeraciones perfectas
+- Frases que suenan copiadas de libros
+
+**Niveles de alerta:**
+- 🚨 **Alta (≥70%)**: Muy probable que esté leyendo
+- ⚠️ **Moderada (40-69%)**: Patrones sospechosos
+- ✅ **Baja (<40%)**: Habla natural detectada
+
+**Cómo activar:**
+- En la barra lateral, marca: `☑️ 🔍 Detectar si está leyendo (EXPERIMENTAL)`
+- Después de evaluar, verás una alerta si se detecta lectura
+- Haz clic en "Ver Detalles" para análisis completo
+
+**Documentación completa:** Ver `DETECTOR_LECTURA.md`
 
 ### Ejemplo de uso - Biología (Fotosíntesis)
 
@@ -169,6 +215,60 @@ En `engine.py`, modifica el parámetro `temperature` para controlar la creativid
 temperature=0.2  # Más determinístico (recomendado para evaluaciones)
 temperature=0.7  # Más creativo
 ```
+
+## ☁️ Uso con Microsoft Azure (Alternativa)
+
+Si prefieres usar recursos de Microsoft en lugar de Groq:
+
+### Azure OpenAI Service
+
+**Ventajas:**
+- Whisper disponible para transcripción
+- GPT-4 / GPT-4-turbo para evaluación
+- Infraestructura empresarial de Microsoft
+- Cumplimiento de normativas (GDPR, HIPAA)
+
+**Desventajas:**
+- Requiere suscripción de Azure (no gratuito)
+- Costos por uso (tokens procesados)
+- Configuración más compleja
+
+**Cómo implementarlo:**
+
+1. Crea una cuenta en [Azure Portal](https://portal.azure.com)
+2. Solicita acceso a Azure OpenAI Service
+3. Obtén tu endpoint y API key
+4. Modifica `engine.py` para usar Azure OpenAI en lugar de Groq:
+
+```python
+from openai import AzureOpenAI
+
+client = AzureOpenAI(
+    api_key="tu-azure-api-key",
+    api_version="2024-02-01",
+    azure_endpoint="https://tu-recurso.openai.azure.com"
+)
+```
+
+### Azure Speech Services
+
+Alternativa a Whisper para transcripción:
+- Soporte para 100+ idiomas
+- Reconocimiento en tiempo real
+- Modelos personalizables
+
+### Comparación Groq vs Azure
+
+| Característica | Groq Cloud | Azure OpenAI |
+|----------------|------------|--------------|
+| **Costo** | Gratuito (con límites) | Pago por uso |
+| **Velocidad** | Ultra rápido | Rápido |
+| **Whisper** | ✅ Incluido | ✅ Incluido |
+| **Modelos** | Llama, Gemma, Mixtral | GPT-4, GPT-3.5 |
+| **Empresarial** | Limitado | ✅ Completo |
+| **Setup** | Muy simple | Complejo |
+
+**Recomendación:** Usa Groq para desarrollo y pruebas. Considera Azure para producción empresarial.
 
 ## 🐛 Solución de Problemas
 

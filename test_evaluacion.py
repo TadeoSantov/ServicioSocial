@@ -1,4 +1,4 @@
-"""Script de prueba para diagnosticar el motor de evaluación"""
+"""Script de prueba para el motor de evaluacion."""
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -25,21 +25,20 @@ print("=" * 60)
 print("PRUEBA DE EVALUACIÓN - MOTOR")
 print("=" * 60)
 
-# Probar con Groq
-print("\n>>> Probando con GROQ (Llama 3.3)...")
+print("\n>>> Probando con Mistral (por defecto)...")
 try:
-    evaluador = EvaluadorEngine(proveedor="groq")
+    evaluador = EvaluadorEngine(proveedor_llm="mistral")
     resultado = evaluador.evaluar_examen(material, rubrica, respuesta_alumno)
-    
+
     if resultado["success"]:
         eval_data = resultado["evaluacion"]
-        print(f"\n✅ ÉXITO!")
-        print(f"   Calificación: {eval_data.get('calificacion_final', 'N/A')}/10")
-        print(f"   Confianza: {eval_data.get('nivel_confianza', 'N/A')}")
-        print(f"   Tema: {eval_data.get('tema_detectado', 'N/A')}")
+        print(f"\n  OK")
+        print(f"  Calificacion: {eval_data.get('calificacion_final', 'N/A')}/10")
+        print(f"  Confianza: {eval_data.get('nivel_confianza', 'N/A')}")
+        print(f"  Tema: {eval_data.get('tema_detectado', 'N/A')}")
     else:
-        print(f"\n❌ ERROR: {resultado.get('error', 'Error desconocido')}")
+        print(f"\n  ERROR: {resultado.get('error', 'Error desconocido')}")
 except Exception as e:
-    print(f"\n❌ EXCEPCIÓN: {e}")
+    print(f"\n  EXCEPCION: {e}")
 
 print("\n" + "=" * 60)
